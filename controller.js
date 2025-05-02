@@ -35,7 +35,7 @@ class DrawerController {
   }
 
   pixelToPercent(y) {
-    const screenHeight = document.documentElement.clientHeight; // full viewport height
+    const screenHeight = document.documentElement.clientHeight;
     return Math.max(0, Math.min(100, (y / screenHeight) * 100));
   }
 
@@ -50,7 +50,7 @@ class DrawerController {
   onTouchMove(e) {
     if (!this.isDragging) return;
     this.currentY = e.touches[0].clientY;
-    const percent = this.pixelToPercent(this.currentY); // now uses absolute screen position
+    const percent = this.pixelToPercent(this.currentY);
     this.targetPosition = percent;
   }
 
