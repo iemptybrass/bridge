@@ -1,1 +1,72 @@
  
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Modular Interactive Drawer with Status</title>
+        <link rel="stylesheet" href="drawer.css" />
+        <style>
+            .crosshair-line {
+                position: absolute;
+                background: red;
+                pointer-events: none;
+                z-index: 9999;
+            }
+
+            #vertical {
+                width: 2px;
+                height: 100vh;
+                top: 0;
+            }
+
+            #horizontal {
+                height: 2px;
+                width: 100vw;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="drawer" class="drawer">
+            <div class="handle"></div>
+        </div>
+
+        <div id="drawer-status">
+            Target: 0%<br />
+            Actual: 0%
+        </div>
+
+        <!-- Crosshair elements -->
+        <div id="vertical" class="crosshair-line"></div>
+        <div id="horizontal" class="crosshair-line"></div>
+
+        <script src="drawerController.js"></script>
+        <script src="drawer.js"></script>
+        <script src="drawerStatus.js"></script>
+
+        <script>
+            const verticalLine = document.getElementById("vertical");
+            const horizontalLine = document.getElementById("horizontal");
+
+            function updateCrosshair(x, y) {
+                verticalLine.style.left = `${x}px`;
+                horizontalLine.style.top = `${y}px`;
+            }
+
+            // Mobile touch events
+            document.addEventListener(
+                "touchmove",
+                function (e) {
+                    const touch = e.touches[0];
+                    updateCrosshair(touch.clientX, touch.clientY);
+                },
+                { passive: true }
+            );
+
+            // Desktop mouse events
+            document.addEventListener("mousemove", function (e) {
+                updateCrosshair(e.clientX, e.clientY);
+            });
+        </script>
+    </body>
+</html>
