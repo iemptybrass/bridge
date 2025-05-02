@@ -1,5 +1,5 @@
 class DrawerController {
-  constructor(drawerElement, options = {}) {
+  constructor ( drawerElement, options = {} ) {
     this.drawer = drawerElement;
     this.position = 100;
     this.targetPosition = 100;
@@ -18,19 +18,17 @@ class DrawerController {
     this.startTime = 0;
     this.drawerHeight = 0;
 
-    this.init();
-  }
+    this.init(); }
 
   init() {
     this.refreshDimensions();
-    window.addEventListener("resize", () => this.refreshDimensions());
+    window.addEventListener( "resize", () => this.refreshDimensions() );
 
-    document.addEventListener("touchstart", e => this.onTouchStart(e));
-    document.addEventListener("touchmove", e => this.onTouchMove(e));
-    document.addEventListener("touchend", e => this.onTouchEnd(e));
+    document.addEventListener( "touchstart", e => this.onTouchStart(e) );
+    document.addEventListener( "touchmove", e => this.onTouchMove(e) );
+    document.addEventListener( "touchend", e => this.onTouchEnd(e) );
 
-    requestAnimationFrame(() => this.animate());
-  }
+    requestAnimationFrame ( () => this.animate() );  }
 
   refreshDimensions() {
     this.drawerHeight = this.drawer.getBoundingClientRect().height;
