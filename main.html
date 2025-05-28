@@ -9,14 +9,16 @@
   <script src="app.js" defer></script>
 </head>
 <body>
-  <div id="app">
-    <div class="center-box">
-      <h1>{{ message }}</h1>
-      <p><strong>Available window keys:</strong></p>
-      <ul>
-        <li v-for="key in windowKeys" :key="key">{{ key }}</li>
-      </ul>
-    </div>
+<div id="app">
+  <div class="center-box">
+    <h1>{{ message }}</h1>
+    <p v-if="bridgeAvailable"><strong>window.Bridge keys:</strong></p>
+    <p v-else style="color:red">Bridge interface not available.</p>
+    <ul v-if="bridgeAvailable">
+      <li v-for="key in bridgeKeys" :key="key">{{ key }}</li>
+    </ul>
   </div>
+</div>
+
 </body>
 </html>

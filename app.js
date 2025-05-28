@@ -3,12 +3,14 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      message: 'Bridge Launcher JS Interface Check',
-      windowKeys: []
+      message: 'Bridge API Inspector',
+      bridgeAvailable: typeof window.Bridge !== 'undefined',
+      bridgeKeys: []
     }
   },
   mounted() {
-    this.windowKeys = Object.keys(window)
+    if (this.bridgeAvailable) {
+      this.bridgeKeys = Object.keys(window.Bridge)
+    }
   }
 }).mount('#app')
- 
