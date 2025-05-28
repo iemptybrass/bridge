@@ -3,14 +3,13 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      message: 'Launch App',
-      count: 0, // <-- You must define this
-      appPackage: 'com.android.settings'
+      message: 'Launch Android App'
     }
   },
   methods: {
     launchApp() {
-      window.location.href = `bridge://launch?package=${this.appPackage}`
+      // Opens Android Settings via intent URI
+      window.location.href = "intent://#Intent;package=com.android.settings;end";
     }
   }
 }).mount('#app')

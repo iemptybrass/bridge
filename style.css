@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: #111;
+  background: #121212;
   font-family: sans-serif;
   display: flex;
   justify-content: center;
@@ -24,10 +24,10 @@ html, body {
 
 button {
   margin-top: 1em;
-  padding: 0.5em 1em;
+  padding: 0.6em 1.2em;
   font-size: 1.2em;
   background: #333;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
 }
