@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Bridge Vue App</title>
+  <title>Bridge JS Interface Check</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -12,7 +12,10 @@
   <div id="app">
     <div class="center-box">
       <h1>{{ message }}</h1>
-      <button @click="launchApp">Open Settings</button>
+      <p><strong>Available window keys:</strong></p>
+      <ul>
+        <li v-for="key in windowKeys" :key="key">{{ key }}</li>
+      </ul>
     </div>
   </div>
 </body>
