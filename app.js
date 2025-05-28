@@ -3,8 +3,13 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      message: 'Welcome to My App',
-      count: 0
+      message: 'Launch Settings',
+      appPackage: 'com.android.settings'
+    }
+  },
+  methods: {
+    launchApp() {
+      window.location.href = `bridge://launch?package=${this.appPackage}`
     }
   }
 }).mount('#app')
