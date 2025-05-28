@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <title>Centered Vue App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="app.js" defer></script>
 </head>
 <body>
-<h2>Demo JavaScript in Head</h2>
-
-<p id="demo">A Paragraph</p>
-<button type="button" onclick="myFunction()">Try it</button>
-<script src="index.js"></script>
-
+  <div id="app">
+    <div class="center-box">
+      <h1>{{ message }}</h1>
+      <button @click="count++">Clicked {{ count }} times</button>
+    </div>
+  </div>
 </body>
 </html>
