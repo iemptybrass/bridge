@@ -12,7 +12,10 @@
   <div id="app">
     <div class="center-box">
       <h1>{{ message }}</h1>
-      <button @click="launchApp">Open Settings</button>
+<a href="intent://settings#Intent;scheme=package;package=com.android.settings;end">
+  <button>Open Settings</button>
+</a>
+
     </div>
   </div>
 </body>
