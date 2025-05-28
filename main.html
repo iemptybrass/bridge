@@ -12,13 +12,8 @@
 <div id="app">
   <div class="center-box">
     <h1>{{ message }}</h1>
-    <p v-if="bridgeAvailable"><strong>window.Bridge keys:</strong></p>
-    <p v-else style="color:red">Bridge interface not available.</p>
-    <ul v-if="bridgeAvailable">
-      <li v-for="key in bridgeKeys" :key="key">{{ key }}</li>
-    </ul>
+    <button @click="launchApp">Open Settings</button>
   </div>
 </div>
-
 </body>
 </html>

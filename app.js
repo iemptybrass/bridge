@@ -3,14 +3,17 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      message: 'Bridge API Inspector',
-      bridgeAvailable: typeof window.Bridge !== 'undefined',
-      bridgeKeys: []
+      message: 'Launch Settings App',
+      packageName: 'com.android.settings'
     }
   },
-  mounted() {
-    if (this.bridgeAvailable) {
-      this.bridgeKeys = Object.keys(window.Bridge)
+  methods: {
+    launchApp() {
+      if (window.Bridge && typeof window.Bridge.requestLaunchApp === 'function') {
+        window.Bridge.requestLaunchApp(this.packageName)
+      } else {
+        alert("Bridge API not available")
+      }
     }
   }
 }).mount('#app')
