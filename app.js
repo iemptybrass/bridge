@@ -3,7 +3,8 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      message: 'Launch Settings',
+      message: 'Launch App',
+      count: 0, // <-- You must define this
       appPackage: 'com.android.settings'
     }
   },
