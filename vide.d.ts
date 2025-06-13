@@ -7,6 +7,15 @@ export default defineConfig({
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: false,
+      mangle: false,
+      format: {
+        beautify: true,
+        comments: false,
+      },
+    },
     rollupOptions: {
       output: {
         entryFileNames: 'index.js',
@@ -15,13 +24,7 @@ export default defineConfig({
           if (assetInfo.name?.endsWith('.css')) return 'index.css';
           return '[name].[ext]';
         },
-      }
+      },
     },
-    minify: 'terser',
-    terserOptions: {
-      format: {
-        comments: false,
-      }
-    }
-  }
+  },
 });

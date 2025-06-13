@@ -1,69 +1,55 @@
 <template>
   <div
-    class="touch-area"
-    @touchstart="onTouchStart"
-    @touchend="onTouchEnd"
-  >
-    <transition name="slide-up">
-      <div v-if="showPanel" class="panel">
-        Slide-up panel activated by swipe.
-      </div>
-    </transition>
+    class="panel"
+    :style="{ transform: `translateY(${translateY}px)` }"
+    @touchstart="onStart"
+    @touchmove="onMove"
+    @touchend="onEnd">
+
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      touchStartY: 0,
-      touchEndY: 0,
-      showPanel: false
-    };
-  },
-  methods: {
-    onTouchStart(e: TouchEvent) {
-      this.touchStartY = e.touches[0].clientY;
-    },
-    onTouchEnd(e: TouchEvent) {
-      this.touchEndY = e.changedTouches[0].clientY;
-      const delta = this.touchStartY - this.touchEndY;
-      if (delta > 50) { // swipe up threshold
-        this.showPanel = true;
-      }
-    }
-  }
-};
-</script>
+<script setup lang="ts">
+import { ref } from 'vue';
 
-<style>
-.touch-area {
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
+const startY = ref(0);
+const currentY = ref(0);
+const startTime = ref(0);
+const translateY = ref(100); // initial offset (closed)
+
+function onStart(e: TouchEvent) {
+  startY.value = e.touches[0].clientY;
+  currentY.value = startY.value;
+  startTime.value = Date.now();
 }
 
+function onMove(e: TouchEvent) {
+  currentY.value = e.touches[0].clientY;
+  const delta = currentY.value - startY.value;
+  translateY.value = Math.max(0, translateY.value + delta);
+  startY.value = currentY.value;
+}
+
+function onEnd() {
+  const velocity = (startY.value - currentY.value) / (Date.now() - startTime.value);
+  if (velocity < -0.5 || translateY.value > 150) {
+    translateY.value = 300; // snap closed
+  } else if (velocity > 0.5 || translateY.value < 150) {
+    translateY.value = 0; // snap open
+  } else {
+    translateY.value = 100; // settle midway
+  }
+}
+</script>
+
+<style scoped>
 .panel {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: #333;
-  color: white;
-  padding: 1rem;
-  z-index: 100;
-}
-
-.slide-up-enter-active,
-.slide-up-leave-active {
+  width: 100%;
+  height: 300px;
+  background: white;
   transition: transform 0.3s ease;
-}
-.slide-up-enter-from,
-.slide-up-leave-to {
-  transform: translateY(100%);
-}
-.slide-up-enter-to,
-.slide-up-leave-from {
-  transform: translateY(0);
+  touch-action: none;
 }
 </style>
