@@ -1,1 +1,0 @@
-.touch-area{position:absolute;top:0;bottom:0;left:0;right:0}.panel{position:fixed;bottom:0;left:0;right:0;height:200px;background:#333;color:#fff;padding:1rem;z-index:100}.slide-up-enter-active,.slide-up-leave-active{transition:transform .3s ease}.slide-up-enter-from,.slide-up-leave-to{transform:translateY(100%)}.slide-up-enter-to,.slide-up-leave-from{transform:translateY(0)}
